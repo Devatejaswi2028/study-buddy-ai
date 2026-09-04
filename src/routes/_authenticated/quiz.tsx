@@ -66,7 +66,7 @@ function QuizPage() {
     await supabase.from("quiz_attempts").insert({
       user_id: user.id,
       document_id: activeId,
-      topic: doc?.title ?? undefined,
+      topic: doc?.title ?? "General",
       score,
       total: questions.length,
     });
