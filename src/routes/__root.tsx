@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "AI StudyMate" },
       { name: "description", content: "AI study assistant built from your own PDFs and notes." },
-      { name: "author", content: "AI StudyMate" },
+      { name: "author", content: "Deva Tejaswi Jupudi" },
       { property: "og:title", content: "AI StudyMate" },
       {
         property: "og:description",

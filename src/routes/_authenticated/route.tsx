@@ -76,6 +76,14 @@ function AppShell() {
           <div className="mx-auto max-w-6xl px-6 py-8 sm:px-8">
             <Outlet />
           </div>
+
+          <footer className="border-t border-hairline mt-auto">
+            <div className="mx-auto max-w-6xl px-6 py-4 sm:px-8">
+              <p className="text-center text-xs text-faint">
+                Built with care by Deva Tejaswi Jupudi
+              </p>
+            </div>
+          </footer>
         </main>
       </div>
     </div>
