@@ -1,18 +1,16 @@
-// Application router entry point.
-// TanStack Start uses file-based routing; this file creates the router and mounts the app.
+import { QueryClient } from "@tanstack/react-query";
 import { createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 
-export const router = createRouter({ routeTree });
+export const getRouter = () => {
+  const queryClient = new QueryClient();
 
-// Register the router for type safety
-declare module "@tanstack/react-router" {
-  interface Register {
-    router: typeof router;
-  }
-}
+  const router = createRouter({
+    routeTree,
+    context: { queryClient },
+    scrollRestoration: true,
+    defaultPreloadStaleTime: 0,
+  });
 
-const rootElement = document.getElementById("root");
-if (rootElement) {
-  router.mount(rootElement);
-}
+  return router;
+};
