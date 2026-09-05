@@ -1,19 +1,134 @@
-/* Global styles for AI StudyMate */
-* {
-  box-sizing: border-box;
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * AI StudyMate design system — "Luminous night desk".
+ * Deep green-black desk surface, mint brand light, amber highlighter accent.
+ * All colors are oklch semantic tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* app-specific */
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-hairline: var(--hairline);
+  --color-subtle: var(--subtle);
+  --color-faint: var(--faint);
 }
 
-html,
-body,
-#root {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.13 0.012 165);
+  --foreground: oklch(0.93 0.006 165);
+
+  --card: oklch(0.19 0.012 165);
+  --card-foreground: oklch(0.96 0.004 165);
+  --popover: oklch(0.17 0.012 165);
+  --popover-foreground: oklch(0.96 0.004 165);
+
+  /* mint brand */
+  --primary: oklch(0.81 0.106 168);
+  --primary-foreground: oklch(0.21 0.045 165);
+
+  /* amber highlighter */
+  --accent: oklch(0.83 0.135 85);
+  --accent-foreground: oklch(0.22 0.05 85);
+
+  --secondary: oklch(0.24 0.012 165);
+  --secondary-foreground: oklch(0.93 0.006 165);
+
+  --muted: oklch(0.24 0.012 165);
+  --muted-foreground: oklch(0.66 0.012 165);
+  --subtle: oklch(0.55 0.012 165);
+  --faint: oklch(0.44 0.012 165);
+
+  --destructive: oklch(0.62 0.2 25);
+  --destructive-foreground: oklch(0.97 0.01 25);
+
+  --border: oklch(1 0 0 / 7%);
+  --hairline: oklch(1 0 0 / 5%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.81 0.106 168 / 45%);
+
+  --surface: oklch(1 0 0 / 4%);
+  --surface-strong: oklch(1 0 0 / 6%);
 }
 
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: #0b0f0d;
-  color: #e8f5e9;
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-primary) 30%, transparent);
+    color: oklch(1 0 0);
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -16px, 0);
+  }
+}
+
+@utility animate-floaty {
+  animation: floaty 14s ease-in-out infinite;
+}
+
+@utility animate-floaty-slow {
+  animation: floaty 18s ease-in-out infinite reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-floaty,
+  .animate-floaty-slow {
+    animation: none;
+  }
 }
